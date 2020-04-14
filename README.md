@@ -1,2 +1,2 @@
 # az-labs
-my azure labs
+## to share my scripts using az-cli
