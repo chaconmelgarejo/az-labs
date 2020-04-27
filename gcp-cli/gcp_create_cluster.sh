@@ -3,7 +3,7 @@
 # description: GCP Customize Cluster
 
 # cluster vars
-project_name="starmeup-data-platform-dev"
+project_name="my-dev"
 cluster_name="test-cluster"
 cluster_zone="us-central1-c"
 cluster_version="1.14.10-gke.27"
@@ -15,7 +15,10 @@ image_type="COS"
 num_nodes="1"
 cluster_tags="services"
 master_pool="172.16.0.0/28"
-cluster_ring="projects/starmeup-data-platform-dev/locations/us-central1/keyRings/local-vault/cryptoKeys/cluster-keys"
+cluster_region="us-central1"
+keyring_name=""
+keys_storage=""
+cluster_ring="projects/$project_name/locations/$cluster_region/keyRings/$keyring_name/cryptoKeys/$keys_storage"
 
 # create customize cluster
 
@@ -27,7 +30,7 @@ gcloud beta container --project $project_name clusters create $cluster_name \
     --network $cluster_netwotk --subnetwork $cluster_subnetwork \
     --enable-master-authorized-networks --master-authorized-networks=$master_pool \
     --tags $cluster_tags --addons HorizontalPodAutoscaling,HttpLoadBalancing --enable-autorepair \
-    --labels $cluster_label 
+    --labels $cluster_label
 
 # add kms support
 gcloud container clusters update $cluster_name \
