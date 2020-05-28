@@ -25,7 +25,7 @@ echo "aws_secret_access_key = ${secret_key:1:-1}" >> $output_file
 echo "aws_session_token = ${token_key:1:-1}"  >> $output_file
 echo "The New MFA access was created with success in $output_file, please use the --profile $profile"
 
-echo "Loading the AWS env vars ..."
+echo "Loading to ENV vars ..."
 export AWS_SDK_LOAD_CONFIG=1
 export AWS_PROFILE=$profile
 export AWS_ACCESS_KEY_ID=${access_key:1:-1}
